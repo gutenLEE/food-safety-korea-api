@@ -1,4 +1,6 @@
-package com.food.foodsafetykoreaapi.service;
+package com.food.foodsafetykoreaapi.service.api;
+
+import com.food.foodsafetykoreaapi.service.api.ApiService;
 
 /**
  * @author gutenlee

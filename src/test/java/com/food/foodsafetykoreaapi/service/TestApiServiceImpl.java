@@ -1,17 +1,10 @@
 package com.food.foodsafetykoreaapi.service;
 
-import aj.org.objectweb.asm.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.food.foodsafetykoreaapi.domain.api.dto.ApiResponseDto;
 import com.food.foodsafetykoreaapi.domain.api.dto.C003ResponseData;
 import com.food.foodsafetykoreaapi.domain.api.dto.ResponseWrapper;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import com.food.foodsafetykoreaapi.service.api.ApiService;
 import org.springframework.web.client.RestTemplate;
-
-import java.lang.reflect.ParameterizedType;
-import java.util.HashMap;
 
 /**
  * @author gutenlee
@@ -29,11 +22,10 @@ public class TestApiServiceImpl implements ApiService {
         String url = "http://openapi.foodsafetykorea.go.kr/api/09f855f93fb8481da7b5/C003/json/1/1/BSSH_NM=노바렉스&PRMS_DT=20210101";
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<HashMap> entity = restTemplate.getForEntity(url, HashMap.class);
-
-        ObjectMapper mapper = new ObjectMapper();
-
-
+        ResponseWrapper<C003ResponseData> responseWrapper = restTemplate.getForObject(url, ResponseWrapper.class);
+        assert responseWrapper != null;
+        ApiResponseDto<C003ResponseData> apiResponseDto = responseWrapper.getMap().get("C003");
+        System.out.println("apiResponseDto = " + apiResponseDto);
 
     }
 }

@@ -1,4 +1,4 @@
-package com.food.foodsafetykoreaapi.service;
+package com.food.foodsafetykoreaapi.service.api;
 
 public interface ApiService {
     void request();

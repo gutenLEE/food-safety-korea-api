@@ -18,5 +18,4 @@ public class ApiResponseDto<T> {
     private ResultStatusDto resultStatusDto;
     @JsonProperty("row")
     private List<T> row;
-
 }
