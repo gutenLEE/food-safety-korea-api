@@ -1,7 +1,6 @@
 package com.food.foodsafetykoreaapi.domain.api;
 
 import lombok.Builder;
-import lombok.Getter;
 
 /**
  * @author gutenlee
@@ -16,6 +15,13 @@ public class ApiPagination {
     public ApiPagination(Integer page, Integer count) {
         this.page = page;
         this.count = count;
+    }
+
+    public static ApiPagination initialPaging(){
+        return ApiPagination.builder()
+                .page(1)
+                .count(1)
+                .build();
     }
 
     public String getPage() {

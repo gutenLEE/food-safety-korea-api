@@ -15,21 +15,19 @@ import java.util.stream.Collectors;
  */
 public class ApiURL {
 
-    private static String URL = "http://openapi.foodsafetykorea.go.kr/api";
-    private static String JSON = "json";
-    private final String apiKey;
+    private static final String URL = "http://openapi.foodsafetykorea.go.kr/api";
+    private static final String JSON = "json";
+    private static final String apiKey = "09f855f93fb8481da7b5";
     private final FoodSafetyApiType apiType;
     private final ApiPagination apiPagination;
     private final Map<String, String> paramMap;
 
     @Builder
     public ApiURL(
-            String apiKey,
             FoodSafetyApiType apiType,
             ApiPagination apiPagination,
             Map<String, String> paramMap
     ) {
-        this.apiKey = apiKey;
         this.apiType = apiType;
         this.apiPagination = apiPagination;
         this.paramMap = paramMap;
@@ -42,7 +40,7 @@ public class ApiURL {
                 .fromUriString(URL)
                 .pathSegment(
                         apiKey,
-                        apiType.name(),
+                        apiType.getApiCode(),
                         JSON,
                         apiPagination.getPage(),
                         apiPagination.getCount(),
