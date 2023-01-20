@@ -28,13 +28,21 @@ class ApiServiceTest {
         map.put("PRMS_DT", "20210101");
 
         ApiURL apiURL = ApiURL.builder()
-                .apiKey("09f855f93fb8481da7b5")
                 .apiType(FoodSafetyApiType.C003)
                 .apiPagination(ApiPagination.builder().page(1).count(2).build())
                 .paramMap(map)
                 .build();
 
         assertThat(apiURL.getRequestURL()).isEqualTo("http://openapi.foodsafetykorea.go.kr/api/09f855f93fb8481da7b5/C003/json/1/2/BSSH_NM=노바렉스&PRMS_DT=20210101");
+
+        apiURL = ApiURL.builder()
+                .apiType(FoodSafetyApiType.C002)
+                .apiPagination(ApiPagination.builder().page(1).count(2).build())
+                .paramMap(map)
+                .build();
+        assertThat(apiURL.getRequestURL()).isEqualTo("http://openapi.foodsafetykorea.go.kr/api/09f855f93fb8481da7b5/C002/json/1/2/BSSH_NM=노바렉스&PRMS_DT=20210101");
+
+
     }
 
 
