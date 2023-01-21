@@ -1,12 +1,18 @@
 package com.food.foodsafetykoreaapi.service.api;
 
-import com.food.foodsafetykoreaapi.domain.api.ApiURL;
 import com.food.foodsafetykoreaapi.domain.api.enums.FoodSafetyApiType;
+import org.springframework.stereotype.Service;
 
 /**
  * @author gutenlee
  * @since 2023/01/19
  */
-public interface ApiFactory {
-    void request(ApiURL apiURL);
+@Service
+public class ApiFactory {
+
+    public ApiService createApiService(FoodSafetyApiType apiType){
+        if (apiType == FoodSafetyApiType.C003)
+            return new C003ApiService();
+        return null;
+    }
 }

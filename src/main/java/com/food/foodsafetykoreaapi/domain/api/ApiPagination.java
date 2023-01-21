@@ -17,7 +17,7 @@ public class ApiPagination {
         this.count = count;
     }
 
-    public static ApiPagination initialPaging(){
+    public static ApiPagination initialPage(){
         return ApiPagination.builder()
                 .page(1)
                 .count(1)
