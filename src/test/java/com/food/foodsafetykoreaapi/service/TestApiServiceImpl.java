@@ -10,9 +10,8 @@ import org.springframework.web.client.RestTemplate;
  * @author gutenlee
  * @since 2023/01/14
  */
-public class TestApiServiceImpl implements ApiService {
+public class TestApiServiceImpl  {
 
-    @Override
     public void request() {
 
         // http://openapi.foodsafetykorea.go.kr/api/

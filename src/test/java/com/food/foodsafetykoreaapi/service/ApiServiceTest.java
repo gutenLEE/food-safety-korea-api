@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @WebServiceClientTest
 class ApiServiceTest {
 
-    private final ApiService apiService = new TestApiServiceImpl();
+    private ApiService apiService;
 
     @Test
     void urlTest() throws Exception {
@@ -45,13 +45,6 @@ class ApiServiceTest {
 
     }
 
-
-
-    @Test
-    void requestTest() throws Exception {
-
-        apiService.request();
-    }
 
 
 }
