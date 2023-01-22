@@ -25,6 +25,16 @@ class ApiControllerTest {
 
     }
 
+    @Test
+    void c002ApiServiceTest() throws Exception {
+        RequestParamDto requestParamDto = new RequestParamDto();
+        requestParamDto.companyName = "노바렉스";
+        requestParamDto.apiType = "C002";
+        ApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
+        apiService.request(requestParamDto);
+    }
+
+
 
 
 }

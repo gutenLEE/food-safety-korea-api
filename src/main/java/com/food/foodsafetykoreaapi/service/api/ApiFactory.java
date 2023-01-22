@@ -13,6 +13,8 @@ public class ApiFactory {
     public ApiService createApiService(FoodSafetyApiType apiType){
         if (apiType == FoodSafetyApiType.C003)
             return new C003ApiService();
+        else if (apiType == FoodSafetyApiType.C002)
+            return new C002ApiService();
         return null;
     }
 }
