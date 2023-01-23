@@ -11,10 +11,16 @@ import org.springframework.stereotype.Service;
 public class ApiFactory {
 
     public ApiService createApiService(FoodSafetyApiType apiType){
+
         if (apiType == FoodSafetyApiType.C003)
             return new C003ApiService();
         else if (apiType == FoodSafetyApiType.C002)
             return new C002ApiService();
-        return null;
+        else if (apiType == FoodSafetyApiType.I1250)
+            return new I1250ApiService();
+        else if(apiType == FoodSafetyApiType.I0020)
+            return new I0020ApiService();
+
+        throw new RuntimeException("not found service");
     }
 }
