@@ -19,7 +19,7 @@ public class C002RestApiService implements RestApiService {
 
         ApiURL apiURL = ApiURL.builder()
                 .apiType(apiType)
-                .apiPagination(ApiPagination.builder().page(1).count(2).build())
+                .apiPagination(ApiPagination.builder().page(1).build())
                 .paramMap(requestParamDto.getParamMap())
                 .build();
 

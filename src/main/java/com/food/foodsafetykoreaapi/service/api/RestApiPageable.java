@@ -4,5 +4,5 @@ import com.food.foodsafetykoreaapi.domain.api.ApiPagination;
 import com.food.foodsafetykoreaapi.domain.api.ApiURL;
 
 public interface RestApiPageable {
-    ApiPagination paging(ApiURL apiURL);
+    ApiPagination paging(int responseDataCount);
 }
