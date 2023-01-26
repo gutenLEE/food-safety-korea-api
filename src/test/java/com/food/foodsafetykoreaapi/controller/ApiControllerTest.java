@@ -2,9 +2,8 @@ package com.food.foodsafetykoreaapi.controller;
 
 import com.food.foodsafetykoreaapi.domain.api.dto.RequestParamDto;
 import com.food.foodsafetykoreaapi.service.api.ApiFactory;
-import com.food.foodsafetykoreaapi.service.api.ApiService;
+import com.food.foodsafetykoreaapi.service.api.RestApiService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.webservices.client.WebServiceClientTest;
 
 @WebServiceClientTest
@@ -19,7 +18,7 @@ class ApiControllerTest {
         requestParamDto.companyName = "노바렉스";
         requestParamDto.apiType = "C003";
 
-        ApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
+        RestApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
         apiService.request(requestParamDto);
 
 
@@ -30,7 +29,7 @@ class ApiControllerTest {
         RequestParamDto requestParamDto = new RequestParamDto();
         requestParamDto.companyName = "노바렉스";
         requestParamDto.apiType = "C002";
-        ApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
+        RestApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
         apiService.request(requestParamDto);
     }
 
@@ -39,7 +38,7 @@ class ApiControllerTest {
         RequestParamDto requestParamDto = new RequestParamDto();
         requestParamDto.companyName = "노바렉스";
         requestParamDto.apiType = "I1250";
-        ApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
+        RestApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
         apiService.request(requestParamDto);
     }
 
@@ -48,7 +47,7 @@ class ApiControllerTest {
         RequestParamDto requestParamDto = new RequestParamDto();
         requestParamDto.companyName = "노바렉스";
         requestParamDto.apiType = "I-0020";
-        ApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
+        RestApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
         apiService.request(requestParamDto);
     }
 

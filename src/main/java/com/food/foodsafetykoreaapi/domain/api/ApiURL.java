@@ -58,4 +58,8 @@ public class ApiURL {
                 })
                 .collect(Collectors.joining("&"));
     }
+
+    public ApiPagination getInitPagination() {
+        return apiPagination;
+    }
 }

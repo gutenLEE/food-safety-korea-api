@@ -7,14 +7,16 @@ import com.food.foodsafetykoreaapi.domain.api.dto.C003ResponseData;
 import com.food.foodsafetykoreaapi.domain.api.dto.RequestParamDto;
 import com.food.foodsafetykoreaapi.domain.api.dto.ResponseWrapper;
 import com.food.foodsafetykoreaapi.domain.api.enums.FoodSafetyApiType;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * @author gutenlee
  * @since 2023/01/21
  */
-public class C003ApiService implements ApiService {
+public class C003RestApiService implements RestApiService {
+
+    private static final FoodSafetyApiType apiType = FoodSafetyApiType.C003;
+
     @Override
     public void request(RequestParamDto requestParamDto) {
 

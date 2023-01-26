@@ -2,7 +2,7 @@ package com.food.foodsafetykoreaapi.controller;
 
 import com.food.foodsafetykoreaapi.domain.api.dto.RequestParamDto;
 import com.food.foodsafetykoreaapi.service.api.ApiFactory;
-import com.food.foodsafetykoreaapi.service.api.ApiService;
+import com.food.foodsafetykoreaapi.service.api.RestApiService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +27,7 @@ public class ApiController {
 
     @PostMapping("request")
     public void requestApi(@RequestBody RequestParamDto requestParamDto){
-        ApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
+        RestApiService apiService = apiFactory.createApiService(requestParamDto.getApiType());
         apiService.request(requestParamDto);
     }
 }
