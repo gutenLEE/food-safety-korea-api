@@ -8,22 +8,25 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @author gutenlee
- * @since 2023/01/23
+ * @since 2023/01/22
  */
-public class I0020ApiService implements ApiService{
+public class C002RestApiService implements RestApiService {
+
+    private static final FoodSafetyApiType apiType = FoodSafetyApiType.C002;
+
     @Override
     public void request(RequestParamDto requestParamDto) {
+
         ApiURL apiURL = ApiURL.builder()
-                .apiType(FoodSafetyApiType.I0020)
+                .apiType(apiType)
                 .apiPagination(ApiPagination.builder().page(1).count(2).build())
                 .paramMap(requestParamDto.getParamMap())
                 .build();
 
-        FoodSafetyApiType apiType = requestParamDto.getApiType();
         RestTemplate restTemplate = new RestTemplate();
-        ResponseWrapper<I0020ResponseData> responseWrapper = restTemplate.getForObject(apiURL.getRequestURL(), ResponseWrapper.class);
+        ResponseWrapper<C002ResponseData> responseWrapper = restTemplate.getForObject(apiURL.getRequestURL(), ResponseWrapper.class);
         assert responseWrapper != null;
-        ApiResponseDto<I0020ResponseData> apiResponseDto = responseWrapper.getMap().get(apiType.getApiCode());
+        ApiResponseDto<C002ResponseData> apiResponseDto = responseWrapper.getMap().get(apiType.getApiCode());
         System.out.println("apiResponseDto = " + apiResponseDto);
     }
 }
