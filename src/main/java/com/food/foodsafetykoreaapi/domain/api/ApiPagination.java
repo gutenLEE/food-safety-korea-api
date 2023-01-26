@@ -1,27 +1,41 @@
 package com.food.foodsafetykoreaapi.domain.api;
 
+import com.food.foodsafetykoreaapi.exceptions.ExceedPageException;
+import com.food.foodsafetykoreaapi.service.api.RestApiPageable;
 import lombok.Builder;
+import lombok.ToString;
+
+import java.util.Objects;
 
 /**
  * @author gutenlee
  * @since 2023/01/19
  */
-public class ApiPagination {
+@ToString
+public class ApiPagination implements RestApiPageable {
 
-    private final Integer page;
-    private final Integer count;
+    private static final int COUNT_PER_PAGE = 20;
+
+    private Integer page;
 
     @Builder
-    public ApiPagination(Integer page, Integer count) {
+    public ApiPagination(
+            Integer page) {
         this.page = page;
-        this.count = count;
     }
 
-    public static ApiPagination initialPage(){
-        return ApiPagination.builder()
-                .page(1)
-                .count(1)
-                .build();
+
+    @Override
+    public ApiPagination paging(int responseDataCount) {
+        if (hasMore(responseDataCount)) {
+            this.page++;
+            return this;
+        }
+        throw new ExceedPageException("No more page Left");
+    }
+
+    private boolean hasMore(int responseDataCount){
+        return COUNT_PER_PAGE == responseDataCount;
     }
 
     public String getPage() {
@@ -29,14 +43,8 @@ public class ApiPagination {
     }
 
     public String getCount() {
-        return Integer.toString(count);
+        return Integer.toString(COUNT_PER_PAGE);
     }
 
-    @Override
-    public String toString() {
-        return "ApiPagination{" +
-                "page=" + page +
-                ", count=" + count +
-                '}';
-    }
+
 }
