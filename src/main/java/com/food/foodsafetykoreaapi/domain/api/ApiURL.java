@@ -3,6 +3,7 @@ package com.food.foodsafetykoreaapi.domain.api;
 import com.food.foodsafetykoreaapi.domain.api.ApiPagination;
 import com.food.foodsafetykoreaapi.domain.api.enums.FoodSafetyApiType;
 import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
  * @author gutenlee
  * @since 2023/01/19
  */
+@Slf4j
 public class ApiURL {
 
     private static final String URL = "http://openapi.foodsafetykorea.go.kr/api";
@@ -36,6 +38,7 @@ public class ApiURL {
     public String getRequestURL(){
         String params = toQueryString();
 
+        log.info("request page " + apiPagination.toString());
         UriComponents uriComponents = UriComponentsBuilder
                 .fromUriString(URL)
                 .pathSegment(

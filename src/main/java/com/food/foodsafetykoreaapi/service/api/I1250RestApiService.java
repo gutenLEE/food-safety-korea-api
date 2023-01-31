@@ -5,38 +5,40 @@ import com.food.foodsafetykoreaapi.domain.api.ApiURL;
 import com.food.foodsafetykoreaapi.domain.api.dto.*;
 import com.food.foodsafetykoreaapi.domain.api.enums.FoodSafetyApiType;
 import com.food.foodsafetykoreaapi.exceptions.ExceedPageException;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * @author gutenlee
  * @since 2023/01/23
  */
-public class I1250RestApiService implements RestApiService {
+public class I1250RestApiService implements RestApiService<I1250ResponseData>, ApiPageable {
 
-    private static final FoodSafetyApiType apiType = FoodSafetyApiType.I1250;
+    private final RestTemplateRequestService<I1250ResponseData> RestTemplateRequestService;
+
+    public I1250RestApiService(RestTemplateRequestService<I1250ResponseData> RestTemplateRequestService) {
+        this.RestTemplateRequestService = RestTemplateRequestService;
+    }
 
     @Override
-    public void request(RequestParamDto requestParamDto) {
+    public ApiResponseDto<I1250ResponseData> request(RequestParamDto requestParamDto) {
+
         ApiPagination pagination = ApiPagination.builder().page(1).build();
+        FoodSafetyApiType apiType = requestParamDto.getApiType();
+
         ApiURL apiURL = ApiURL.builder()
                 .apiType(apiType)
                 .apiPagination(pagination)
                 .paramMap(requestParamDto.getParamMap())
                 .build();
 
-        try {
-            while(true) {
-                RestTemplate restTemplate = new RestTemplate();
-                ResponseWrapper<I0020ResponseData> responseWrapper = restTemplate.getForObject(apiURL.getRequestURL(), ResponseWrapper.class);
-                assert responseWrapper != null;
-                ApiResponseDto<I0020ResponseData> apiResponseDto = responseWrapper.getMap().get(apiType.getApiCode());
-                System.out.println("apiResponseDto = " + apiResponseDto);
-                pagination.paging(apiResponseDto.getTotal_count());
-            }
-        } catch (ExceedPageException e){
-            System.out.println("종료");
-        }
+       RestTemplateRequestService.getResponse(apiURL, apiType);
 
+       while (true) {
+
+       }
     }
 
+    @Override
+    public ApiPagination getNextPage(int responseDataCount) {
+        return null;
+    }
 }
