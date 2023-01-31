@@ -25,8 +25,8 @@ public enum FoodSafetyApiType {
 
     public static FoodSafetyApiType getApiType(String type){
         return Arrays.stream(FoodSafetyApiType.values())
-                .filter(apiTypeEenum -> {
-                    return apiTypeEenum.getApiCode().equals(type);
+                .filter(apiTypeEnum -> {
+                    return apiTypeEnum.getApiCode().equals(type);
                 })
                 .findFirst()
                 .get();
