@@ -13,9 +13,13 @@ import java.util.List;
 public class ApiResponseDto<T> {
 
     @JsonProperty("total_count")
-    private Integer total_count;
+    private Integer totalCount;
     @JsonProperty("RESULT")
     private ResultStatusDto resultStatusDto;
     @JsonProperty("row")
     private List<T> row;
+
+    public boolean isOk(){
+        return this.resultStatusDto.getCODE().equals("INFO-000");
+    }
 }

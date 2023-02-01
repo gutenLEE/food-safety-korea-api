@@ -5,11 +5,15 @@ import com.food.foodsafetykoreaapi.domain.api.ApiURL;
 import com.food.foodsafetykoreaapi.domain.api.dto.*;
 import com.food.foodsafetykoreaapi.domain.api.enums.FoodSafetyApiType;
 import com.food.foodsafetykoreaapi.exceptions.ExceedPageException;
+import org.springframework.stereotype.Service;
+
+import static com.food.foodsafetykoreaapi.domain.api.ApiPagination.initPage;
 
 /**
  * @author gutenlee
  * @since 2023/01/23
  */
+@Service
 public class I1250RestApiService implements RestApiService<I1250ResponseData>, ApiPageable {
 
     private final RestTemplateRequestService<I1250ResponseData> RestTemplateRequestService;
@@ -19,26 +23,24 @@ public class I1250RestApiService implements RestApiService<I1250ResponseData>, A
     }
 
     @Override
-    public ApiResponseDto<I1250ResponseData> request(RequestParamDto requestParamDto) {
+    public ApiResponseDto<I1250ResponseData> request(
+            RequestParamDto requestParamDto,
+            ApiPagination apiPagination) {
 
-        ApiPagination pagination = ApiPagination.builder().page(1).build();
         FoodSafetyApiType apiType = requestParamDto.getApiType();
 
         ApiURL apiURL = ApiURL.builder()
                 .apiType(apiType)
-                .apiPagination(pagination)
+                .apiPagination(apiPagination)
                 .paramMap(requestParamDto.getParamMap())
                 .build();
 
-       RestTemplateRequestService.getResponse(apiURL, apiType);
-
-       while (true) {
-
-       }
+        return RestTemplateRequestService.getResponse(apiURL, apiType);
     }
 
+
     @Override
-    public ApiPagination getNextPage(int responseDataCount) {
-        return null;
+    public ApiPagination createPagination(int countPerPage) {
+        return initPage(countPerPage);
     }
 }

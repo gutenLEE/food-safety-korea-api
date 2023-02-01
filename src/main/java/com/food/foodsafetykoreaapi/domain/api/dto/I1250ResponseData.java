@@ -1,9 +1,12 @@
 package com.food.foodsafetykoreaapi.domain.api.dto;
 
+import lombok.Data;
+
 /**
  * @author gutenlee
  * @since 2023/01/20
  */
+@Data
 public class I1250ResponseData {
 
     /**

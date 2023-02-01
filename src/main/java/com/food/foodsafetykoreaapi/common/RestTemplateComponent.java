@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 public class RestTemplateComponent {
 
     @Bean
-    public RestTemplate foodApiRestTemplate(){
+    public static RestTemplate foodApiRestTemplate(){
         return new RestTemplate();
     }
 }

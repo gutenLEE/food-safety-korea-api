@@ -4,12 +4,16 @@ import com.food.foodsafetykoreaapi.domain.api.ApiPagination;
 import com.food.foodsafetykoreaapi.domain.api.ApiURL;
 import com.food.foodsafetykoreaapi.domain.api.dto.*;
 import com.food.foodsafetykoreaapi.domain.api.enums.FoodSafetyApiType;
+import org.springframework.stereotype.Service;
+
+import static com.food.foodsafetykoreaapi.domain.api.ApiPagination.initPage;
 
 /**
  * @author gutenlee
  * @since 2023/01/23
  */
-public class I0020RestApiService implements RestApiService<I0020ResponseData> {
+@Service
+public class I0020RestApiService implements RestApiService<I0020ResponseData>, ApiPageable{
 
     private final RestTemplateRequestService<I0020ResponseData> RestTemplateRequestService;
 
@@ -18,7 +22,9 @@ public class I0020RestApiService implements RestApiService<I0020ResponseData> {
     }
 
     @Override
-    public ApiResponseDto<I0020ResponseData> request(RequestParamDto requestParamDto) {
+    public ApiResponseDto<I0020ResponseData> request(
+            RequestParamDto requestParamDto,
+            ApiPagination apiPagination) {
 
         ApiPagination pagination = ApiPagination.builder().page(1).build();
         FoodSafetyApiType apiType = requestParamDto.getApiType();
@@ -30,5 +36,10 @@ public class I0020RestApiService implements RestApiService<I0020ResponseData> {
                 .build();
 
         return RestTemplateRequestService.getResponse(apiURL, apiType);
+    }
+
+    @Override
+    public ApiPagination createPagination(int countPerPage) {
+        return initPage(countPerPage);
     }
 }
