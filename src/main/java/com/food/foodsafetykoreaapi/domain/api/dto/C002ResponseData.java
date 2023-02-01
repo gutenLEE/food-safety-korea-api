@@ -1,6 +1,7 @@
 package com.food.foodsafetykoreaapi.domain.api.dto;
 
 import lombok.ToString;
+import lombok.Value;
 
 /**
  * PRDLST_REPORT_NO : 20030415157354
@@ -16,6 +17,7 @@ import lombok.ToString;
  * @author gutenlee
  * @since 2023/01/20
  */
+@Value
 @ToString
 public class C002ResponseData {
     private String PRDLST_REPORT_NO;

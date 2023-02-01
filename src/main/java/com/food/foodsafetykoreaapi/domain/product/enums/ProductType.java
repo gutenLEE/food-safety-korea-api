@@ -1,4 +1,4 @@
-package com.food.foodsafetykoreaapi.domain.product;
+package com.food.foodsafetykoreaapi.domain.product.enums;
 
 public enum ProductType {
 

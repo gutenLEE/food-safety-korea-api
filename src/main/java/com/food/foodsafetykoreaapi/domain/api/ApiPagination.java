@@ -14,23 +14,16 @@ import lombok.Value;
 @ToString
 public class ApiPagination {
 
-    private static final int DEFAULT_COUNT_PER_PAGE = 20;
-
     private final Integer page;
     private final Integer count;
 
     @Builder
     public ApiPagination(Integer page, Integer count) {
         this.page = page;
-
-        if (count == null)
-            count = DEFAULT_COUNT_PER_PAGE;
-
         this.count = count;
     }
 
     public ApiPagination getNextPage(int responseDataCount) {
-
         if (hasMore(responseDataCount)) {
             return ApiPagination.builder()
                     .page(page + 1)
@@ -42,7 +35,7 @@ public class ApiPagination {
     }
 
     private boolean hasMore(int responseDataCount){
-        return DEFAULT_COUNT_PER_PAGE == responseDataCount;
+        return count == responseDataCount;
     }
 
     public String getPage() {
@@ -51,6 +44,10 @@ public class ApiPagination {
 
     public String getCount() {
         return Integer.toString(count);
+    }
+
+    public static ApiPagination initPage(int countPerPage){
+        return ApiPagination.builder().page(1).count(countPerPage).build();
     }
 
 
